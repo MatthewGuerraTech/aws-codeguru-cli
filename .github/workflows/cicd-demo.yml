@@ -29,7 +29,7 @@ jobs:
           aws-region: us-west-2
 
       # Only continue if fetching the AWS credentials was successful.
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         if: steps.iam-role.outcome == 'success'
         with:
           fetch-depth: 0 # the fetch depth needs to be provided if we only want to check a certain commit range.
