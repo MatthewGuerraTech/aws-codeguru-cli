@@ -5,7 +5,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:5.0.6"
+        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.0.7"
     }
 }
 
@@ -13,8 +13,13 @@ plugins {
     id 'java'
     id 'application'
 
-    id "com.github.spotbugs" version "5.0.6"
+    id "com.github.spotbugs" version "6.0.7"
     id 'checkstyle'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
@@ -24,8 +29,14 @@ repositories {
 defaultTasks 'clean', 'check', 'installDist'
 
 version = '0.2.4'
-jar.archiveName = "${jar.baseName}.${jar.extension}"
-distZip.archiveName = "${jar.baseName}.zip"
+
+jar {
+    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
+}
+
+distZip {
+    archiveFileName = "${project.name}.zip"
+}
 
 application {
     mainClass = 'com.amazonaws.gurureviewercli.Main'
@@ -79,7 +90,7 @@ test {
 
 apply plugin: 'checkstyle'
 checkstyle {
-    toolVersion = '8.37'
+    toolVersion = '10.12.5'
     configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
     ignoreFailures = true
 }
@@ -95,12 +106,10 @@ checkstyleTest {
  */
 spotbugs {
     showStackTraces = false
-    reportsDir = file("$buildDir/reports/spotbugs")
+    reportsDir = file("${layout.buildDirectory.get()}/reports/spotbugs")
     ignoreFailures = false
     includeFilter = file("config/spotbugs/spotbugs-exclude.xml")
     showProgress = true
-    effort = 'default'
-    reportLevel = 'default'
 }
 
 

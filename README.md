@@ -215,7 +215,7 @@ An end-to-end example is provided in [this action](.github/workflows/cicd-demo.y
 
 ### Build from Source
 
-To build the project, you need Java 8 or later. Checkout this repository and run:
+To build the project, you need Java 17 or later. Checkout this repository and run:
 ```
 ./gradlew installDist
 ```

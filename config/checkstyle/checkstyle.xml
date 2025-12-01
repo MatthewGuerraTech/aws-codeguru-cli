@@ -86,16 +86,10 @@
             <property name="separateLineBetweenGroups" value="false"/>
         </module>
 
-        <module name="JavadocMethod">
-            <property name="scope" value="public"/>
-            <property name="allowMissingParamTags" value="true"/>
-        </module>
-
         <!-- Checks for Javadoc comments.                     -->
         <!-- See http://checkstyle.sf.net/config_javadoc.html -->
         <module name="JavadocMethod">
-            <property name="allowMissingParamTags" value="true"/>
-            <property name="allowMissingReturnTag" value="true"/>
+            <property name="accessModifiers" value="public"/>
         </module>
 
         <module name="MissingJavadocMethod">
@@ -103,12 +97,10 @@
         </module>
 
         <module name="JavadocType">
-            <property name="scope" value="public"/>
+            <property name="excludeScope" value="anoninner"/>
         </module>
 
         <module name="JavadocStyle">
-            <property name="endOfSentenceFormat" value="true"/>
-
             <!-- Check if the first sentence end with a period. -->
             <property name="checkFirstSentence" value="false"/>
             <property name="checkHtml" value="true"/>
